@@ -32,6 +32,12 @@ python環境
 `python main.py`
 
 
+## 動作
+
+動作動画
+[![YouTube Video](https://img.youtube.com/vi/qRwn2_yp7VU/0.jpg)](https://www.youtube.com/watch?v=qRwn2_yp7VU)
+
+
 ## 動作フロー
 動作の流れは以下です。
 ![動作フロー](./img/flow.png)
