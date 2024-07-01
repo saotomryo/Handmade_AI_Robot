@@ -12,6 +12,7 @@ warnings.simplefilter('ignore')
 
 os.environ["GOOGLE_API_KEY"] = "ここにAPIキーを保存する"
 
+
 def main():
     continue_flag = True
     speech("こんにちは、お話しましょう")
@@ -57,13 +58,28 @@ def main():
                 print("止まります")
                 my_motor.move(0)
 
+            if return_dict["右"] == 1:
+                print("右に回ります")
+                my_motor.move(2)
+                time.sleep(5)
+                print("止まります")
+                my_motor.move(0)
+
+            if return_dict["左"] == 1:
+                print("左に回ります")
+                my_motor.move(3)
+                time.sleep(5)
+                print("止まります")
+                my_motor.move(0)
+
             if return_dict["撮影"] == 1:
                 print("写真を撮ります")
                 take_photo.capture_image()
-                return_message = my_llms.send_photos(result_text,"captured_image.jpg")
+                return_message = my_llms.send_photos(result_text,"photo/captured_image.jpg")
                 tmp_message = str(return_message).replace("json","").replace("`","")
                 return_dict = json.loads(tmp_message)
                 speech(return_dict["返事"])
+                print(return_dict["返事"])
             if return_dict["感情"] == 1:
                 print("嬉しいので前後に動きます")
                 my_motor.move(1)
