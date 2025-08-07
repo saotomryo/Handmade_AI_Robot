@@ -35,8 +35,9 @@ def main():
             break
         
         if i==0:
-           return_message = my_llms.send_message("お話ししましょう")
-        return_message = my_llms.send_message(result_text)
+            return_message = my_llms.send_message("お話ししましょう")
+        else:
+            return_message = my_llms.send_message(result_text)
         print(return_message)
         i+=1
         try:
@@ -75,7 +76,7 @@ def main():
             if return_dict["撮影"] == 1:
                 print("写真を撮ります")
                 take_photo.capture_image()
-                return_message = my_llms.send_photos(result_text,"photo/captured_image.jpg")
+                return_message = my_llms.send_photos("photo/captured_image.jpg", result_text)
                 tmp_message = str(return_message).replace("json","").replace("`","")
                 return_dict = json.loads(tmp_message)
                 speech(return_dict["返事"])

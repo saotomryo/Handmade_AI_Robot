@@ -74,7 +74,7 @@ class llm_function():
 
         return response
     
-    def send_photos(self,pthoto_path,before_message):
+    def send_photos(self, photo_path, before_message):
         # Geminiに送る文章の作成
         message = HumanMessage(
             content=[
@@ -82,19 +82,19 @@ class llm_function():
                     "type": "text",
                     "text": before_message,
                 },
-                {"type": "image_url", "image_url": pthoto_path},
+                {"type": "image_url", "image_url": photo_path},
             ]
         )
         print("事前:" + before_message)
 
-        response = self.chat.invoke([message].content)
-        print("回答:" + response)
+        response = self.chat.invoke([message])
+        print("回答:" + response.content)
 
         # 会話をファイルに保存
         self.file_history.add_user_message(f"User:{before_message}")
-        self.file_history.add_ai_message(f"AI:{response}")
+        self.file_history.add_ai_message(f"AI:{response.content}")
 
-        return response
+        return response.content
 
 
 
